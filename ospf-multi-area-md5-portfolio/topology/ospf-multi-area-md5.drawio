@@ -1,0 +1,23 @@
+<mxfile host="app.diagrams.net" modified="2026-08-30T14:00:00.000Z" agent="OpenAI" version="24.7.17" type="device">
+  <diagram id="ospf-md5" name="OSPF Multi-Area + MD5">
+    <mxGraphModel dx="1200" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="a" value="RouterA&#xa;ABR&#xa;Lo0: 10.255.10.1/32" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1f5fe;strokeColor=#0277bd;fontSize=14;" vertex="1" parent="1"><mxGeometry x="170" y="170" width="210" height="100" as="geometry"/></mxCell>
+        <mxCell id="b" value="RouterB&#xa;ABR&#xa;Lo0: 10.255.20.1/32" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1f5fe;strokeColor=#0277bd;fontSize=14;" vertex="1" parent="1"><mxGeometry x="760" y="170" width="210" height="100" as="geometry"/></mxCell>
+        <mxCell id="c" value="RouterC&#xa;Area 130&#xa;Lo0: 10.255.30.1/32" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3e5f5;strokeColor=#6a1b9a;fontSize=14;" vertex="1" parent="1"><mxGeometry x="170" y="450" width="210" height="100" as="geometry"/></mxCell>
+        <mxCell id="d" value="RouterD&#xa;Area 140&#xa;Lo0: 10.255.40.1/32" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3e5f5;strokeColor=#6a1b9a;fontSize=14;" vertex="1" parent="1"><mxGeometry x="760" y="450" width="210" height="100" as="geometry"/></mxCell>
+        <mxCell id="ab" value="Area 0&#xa;10.60.0.0/30&#xa;Classic MD5&#xa;Key 7" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff8e1;strokeColor=#ff8f00;fontSize=12;" vertex="1" parent="1"><mxGeometry x="475" y="190" width="190" height="80" as="geometry"/></mxCell>
+        <mxCell id="ac" value="Area 130&#xa;10.60.130.0/30" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff8e1;strokeColor=#ff8f00;fontSize=12;" vertex="1" parent="1"><mxGeometry x="250" y="340" width="180" height="70" as="geometry"/></mxCell>
+        <mxCell id="bd" value="Area 140&#xa;10.60.140.0/30" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff8e1;strokeColor=#ff8f00;fontSize=12;" vertex="1" parent="1"><mxGeometry x="710" y="340" width="180" height="70" as="geometry"/></mxCell>
+        <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="a" target="ab"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ab" target="b"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="a" target="ac"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ac" target="c"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="b" target="bd"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="bd" target="d"><mxGeometry relative="1" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
