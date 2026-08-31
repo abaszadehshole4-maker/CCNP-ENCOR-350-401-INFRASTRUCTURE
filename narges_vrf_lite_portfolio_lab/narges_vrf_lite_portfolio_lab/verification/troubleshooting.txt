@@ -1,0 +1,50 @@
+# Troubleshooting Guide
+
+## 1. A VRF interface has no address
+Check:
+show vrf interfaces
+show run interface Gi0/0.110
+
+For router-on-a-stick, verify:
+encapsulation dot1Q <vlan>
+vrf forwarding <VRF>
+ip address ...
+ipv6 address ...
+
+Remember: applying `vrf forwarding` removes the previous Layer-3 address on most IOS platforms, so configure VRF first and addresses second.
+
+## 2. Same-VRF ping fails across routers
+Check:
+show ip route vrf FINANCE
+show ipv6 route vrf FINANCE
+show ip interface brief
+show ipv6 interface brief
+
+Verify the next-hop address and that the static route is inside the correct VRF.
+
+## 3. One VRF can reach the other VRF
+This lab should NOT have route leaking. Check:
+show ip route vrf FINANCE
+show ip route vrf ENGINEERING
+
+There should be no route to the other user's LAN unless you intentionally add route leaking.
+
+## 4. VLAN clients cannot reach the gateway
+Check:
+show interfaces trunk
+show vlan brief
+
+Verify VLAN 110/120 are allowed on the trunk and the host port is in the correct access VLAN.
+
+## 5. EtherChannel is not bundled
+Check:
+show etherchannel summary
+
+Both ends must use compatible LACP settings, trunk settings, allowed VLANs, and member interfaces.
+
+## 6. AAA locks out a user
+Use the console and verify:
+show run | section aaa
+show run | include username
+
+Because this lab uses the local database, confirm that `username admin` exists before applying AAA to VTY lines.

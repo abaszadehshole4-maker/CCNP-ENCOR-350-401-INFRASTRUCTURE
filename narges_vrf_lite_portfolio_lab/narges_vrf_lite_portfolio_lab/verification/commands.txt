@@ -1,0 +1,40 @@
+# Part A — interface status
+show ip interface brief
+show ipv6 interface brief
+
+# Part B — VRF presence and interface membership
+show vrf
+show vrf interfaces
+show running-config | section vrf definition
+
+# Part C — IPv4 routing per VRF
+show ip route vrf FINANCE
+show ip route vrf ENGINEERING
+
+# Part D — IPv6 routing per VRF
+show ipv6 route vrf FINANCE
+show ipv6 route vrf ENGINEERING
+
+# Part E — end-to-end IPv4 tests from routers
+R1-EDGE# ping vrf FINANCE 10.55.110.50
+R1-EDGE# ping vrf ENGINEERING 10.55.120.50
+R3-REMOTE# ping vrf FINANCE 10.44.110.50
+R3-REMOTE# ping vrf ENGINEERING 10.44.120.50
+
+# Part F — inter-VRF isolation
+R1-EDGE# ping vrf FINANCE 10.55.120.50
+R1-EDGE# ping vrf ENGINEERING 10.55.110.50
+
+# Expected: isolation pings fail.
+
+# Part G — Layer 2
+SW1-DIST-A# show vlan brief
+SW1-DIST-A# show interfaces trunk
+SW1-DIST-A# show etherchannel summary
+SW3-ACCESS-B# show etherchannel summary
+SW1-DIST-A# show spanning-tree vlan 110
+SW1-DIST-A# show spanning-tree vlan 120
+
+# Part H — AAA
+show running-config | section aaa
+show running-config | include username

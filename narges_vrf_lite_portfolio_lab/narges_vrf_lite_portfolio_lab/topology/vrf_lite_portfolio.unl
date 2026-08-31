@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lab version="1" edgemode="2" style="1" id="narges-vrf-lite-portfolio">
+  <topology>
+    <nodes>
+      <node id="1" name="R1-EDGE" type="qemu" template="vios" image="vios-adventerprisek9-m-15.6.2T" ram="768" cpus="1" ethernet="4" config="0" left="250" top="120" />
+      <node id="2" name="R2-TRANSIT" type="qemu" template="vios" image="vios-adventerprisek9-m-15.6.2T" ram="768" cpus="1" ethernet="4" config="0" left="550" top="120" />
+      <node id="3" name="R3-REMOTE" type="qemu" template="vios" image="vios-adventerprisek9-m-15.6.2T" ram="768" cpus="1" ethernet="3" config="0" left="850" top="120" />
+      <node id="4" name="SW1-DIST-A" type="qemu" template="viosl2" image="viosl2-adventerprisek9-m-15.2-4055" ram="768" cpus="1" ethernet="6" config="0" left="250" top="380" />
+      <node id="5" name="SW2-DIST-B" type="qemu" template="viosl2" image="viosl2-adventerprisek9-m-15.2-4055" ram="768" cpus="1" ethernet="3" config="0" left="850" top="380" />
+      <node id="6" name="SW3-ACCESS-B" type="qemu" template="viosl2" image="viosl2-adventerprisek9-m-15.2-4055" ram="768" cpus="1" ethernet="4" config="0" left="550" top="520" />
+      <node id="7" name="FIN-PC1" type="vpcs" template="vpcs" left="80" top="500" />
+      <node id="8" name="ENG-PC1" type="vpcs" template="vpcs" left="80" top="620" />
+      <node id="9" name="FIN-PC2" type="vpcs" template="vpcs" left="1030" top="500" />
+      <node id="10" name="ENG-PC2" type="vpcs" template="vpcs" left="1030" top="620" />
+    </nodes>
+    <networks>
+      <network id="101" type="bridge" name="LINK_R1_R2_FIN" />
+      <network id="102" type="bridge" name="LINK_R1_R2_ENG" />
+      <network id="103" type="bridge" name="LINK_R2_R3_FIN" />
+      <network id="104" type="bridge" name="LINK_R2_R3_ENG" />
+      <network id="105" type="bridge" name="TRUNK_R1_SW1" />
+      <network id="106" type="bridge" name="TRUNK_R3_SW2" />
+      <network id="107" type="bridge" name="LACP_A" />
+      <network id="108" type="bridge" name="LACP_B" />
+      <network id="109" type="bridge" name="FIN_LAN_A" />
+      <network id="110" type="bridge" name="ENG_LAN_A" />
+      <network id="111" type="bridge" name="FIN_LAN_B" />
+      <network id="112" type="bridge" name="ENG_LAN_B" />
+    </networks>
+    <links>
+      <link id="1" node1="1" port1="0" node2="2" port2="0" network="101" />
+      <link id="2" node1="1" port1="1" node2="2" port2="1" network="102" />
+      <link id="3" node1="2" port1="2" node2="3" port2="1" network="103" />
+      <link id="4" node1="2" port1="3" node2="3" port2="2" network="104" />
+      <link id="5" node1="1" port1="2" node2="4" port2="0" network="105" />
+      <link id="6" node1="3" port1="0" node2="5" port2="0" network="106" />
+      <link id="7" node1="4" port1="3" node2="6" port2="0" network="107" />
+      <link id="8" node1="4" port1="4" node2="6" port2="1" network="108" />
+      <link id="9" node1="4" port1="1" node2="7" port2="0" network="109" />
+      <link id="10" node1="4" port1="2" node2="8" port2="0" network="110" />
+      <link id="11" node1="5" port1="1" node2="9" port2="0" network="111" />
+      <link id="12" node1="5" port1="2" node2="10" port2="0" network="112" />
+    </links>
+  </topology>
+</lab>

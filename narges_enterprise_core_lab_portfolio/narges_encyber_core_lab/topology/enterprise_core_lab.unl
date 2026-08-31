@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lab version="1" id="narges-enterprise-core-2026" name="NARGES Enterprise Core Resilience Lab">
+  <topology>
+    <nodes>
+      <node id="1" name="ISP" type="router" template="vios" image="vios" console="telnet" left="120" top="100">
+        <interface id="0" name="GigabitEthernet0/0" type="ethernet" network_id="1" />
+        <interface id="1" name="Loopback0" type="loopback" />
+      </node>
+      <node id="2" name="EDGE" type="router" template="vios" image="vios" console="telnet" left="330" top="100">
+        <interface id="0" name="GigabitEthernet0/0" type="ethernet" network_id="1" />
+        <interface id="1" name="GigabitEthernet0/1" type="ethernet" network_id="2" />
+        <interface id="2" name="Loopback0" type="loopback" />
+      </node>
+      <node id="3" name="CORE" type="router" template="vios" image="vios" console="telnet" left="540" top="220">
+        <interface id="0" name="GigabitEthernet0/0" type="ethernet" network_id="2" />
+        <interface id="1" name="GigabitEthernet0/1" type="ethernet" network_id="3" />
+        <interface id="2" name="GigabitEthernet0/2" type="ethernet" network_id="4" />
+        <interface id="3" name="Loopback0" type="loopback" />
+      </node>
+      <node id="4" name="DIST1" type="router" template="viosl2" image="viosl2" console="telnet" left="470" top="430">
+        <interface id="0" name="GigabitEthernet0/0" type="ethernet" network_id="3" />
+        <interface id="1" name="GigabitEthernet0/1" type="ethernet" network_id="5" />
+        <interface id="2" name="GigabitEthernet1/0" type="ethernet" network_id="6" />
+        <interface id="3" name="GigabitEthernet1/1" type="ethernet" network_id="7" />
+        <interface id="4" name="Loopback0" type="loopback" />
+      </node>
+      <node id="5" name="DIST2" type="router" template="viosl2" image="viosl2" console="telnet" left="700" top="430">
+        <interface id="0" name="GigabitEthernet0/0" type="ethernet" network_id="4" />
+        <interface id="1" name="GigabitEthernet0/1" type="ethernet" network_id="5" />
+        <interface id="2" name="GigabitEthernet1/0" type="ethernet" network_id="8" />
+        <interface id="3" name="GigabitEthernet1/1" type="ethernet" network_id="9" />
+        <interface id="4" name="Loopback0" type="loopback" />
+      </node>
+      <node id="6" name="ACC1" type="switch" template="viosl2" image="viosl2" console="telnet" left="350" top="650">
+        <interface id="0" name="GigabitEthernet0/1" type="ethernet" network_id="6" />
+        <interface id="1" name="GigabitEthernet0/2" type="ethernet" network_id="9" />
+        <interface id="2" name="GigabitEthernet0/3" type="ethernet" network_id="10" />
+        <interface id="3" name="GigabitEthernet0/4" type="ethernet" network_id="11" />
+        <interface id="4" name="GigabitEthernet0/5" type="ethernet" network_id="12" />
+        <interface id="5" name="GigabitEthernet0/6" type="ethernet" network_id="13" />
+        <interface id="6" name="GigabitEthernet0/7" type="ethernet" network_id="14" />
+      </node>
+      <node id="7" name="ACC2" type="switch" template="viosl2" image="viosl2" console="telnet" left="820" top="650">
+        <interface id="0" name="GigabitEthernet0/1" type="ethernet" network_id="8" />
+        <interface id="1" name="GigabitEthernet0/2" type="ethernet" network_id="7" />
+        <interface id="2" name="GigabitEthernet0/3" type="ethernet" network_id="10" />
+        <interface id="3" name="GigabitEthernet0/4" type="ethernet" network_id="11" />
+        <interface id="4" name="GigabitEthernet0/5" type="ethernet" network_id="15" />
+      </node>
+      <node id="8" name="MGMT-SW" type="switch" template="viosl2" image="viosl2" console="telnet" left="560" top="820">
+        <interface id="0" name="GigabitEthernet0/1" type="ethernet" network_id="12" />
+        <interface id="1" name="GigabitEthernet0/2" type="ethernet" network_id="16" />
+      </node>
+      <node id="9" name="PC2" type="vpcs" template="vpcs" console="telnet" left="230" top="790">
+        <interface id="0" name="Ethernet0" type="ethernet" network_id="13" />
+      </node>
+      <node id="10" name="PC3" type="vpcs" template="vpcs" console="telnet" left="330" top="790">
+        <interface id="0" name="Ethernet0" type="ethernet" network_id="14" />
+      </node>
+      <node id="11" name="PC4" type="vpcs" template="vpcs" console="telnet" left="900" top="790">
+        <interface id="0" name="Ethernet0" type="ethernet" network_id="15" />
+      </node>
+      <node id="12" name="MGMT1" type="qemu" template="linux" image="linux" console="telnet" left="650" top="850">
+        <interface id="0" name="eth0" type="ethernet" network_id="16" />
+      </node>
+    </nodes>
+    <networks>
+      <network id="1" name="ISP-EDGE" type="bridge" />
+      <network id="2" name="EDGE-CORE" type="bridge" />
+      <network id="3" name="CORE-DIST1" type="bridge" />
+      <network id="4" name="CORE-DIST2" type="bridge" />
+      <network id="5" name="DIST1-DIST2" type="bridge" />
+      <network id="6" name="DIST1-ACC1" type="bridge" />
+      <network id="7" name="DIST1-ACC2" type="bridge" />
+      <network id="8" name="DIST2-ACC2" type="bridge" />
+      <network id="9" name="DIST2-ACC1" type="bridge" />
+      <network id="10" name="ACC1-ACC2-LACP-A" type="bridge" />
+      <network id="11" name="ACC1-ACC2-LACP-B" type="bridge" />
+      <network id="12" name="ACC1-MGMT-SW" type="bridge" />
+      <network id="13" name="ACC1-PC2-V110" type="bridge" />
+      <network id="14" name="ACC1-PC3-V120" type="bridge" />
+      <network id="15" name="ACC2-PC4-V130" type="bridge" />
+      <network id="16" name="MGMT-SW-MGMT1-V130" type="bridge" />
+    </networks>
+  </topology>
+</lab>

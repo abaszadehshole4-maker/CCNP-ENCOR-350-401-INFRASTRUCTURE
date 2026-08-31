@@ -1,0 +1,12 @@
+# Troubleshooting checklist
+
+1. Check physical/link state.
+2. Check IP addressing and masks.
+3. Check OSPF area, network type, hello/dead timers and passive-interface state.
+4. Check router IDs and duplicate IDs.
+5. Check the OSPF database versus the routing table.
+6. Check BGP neighbor state before debugging OSPF default propagation.
+7. Check whether a default route exists locally on EDGE.
+8. Check prefix-list match counts and route-map sequence logic.
+9. Check HSRP active/standby roles, tracking and IP SLA state.
+10. Check management-plane reachability to MGMT1 before troubleshooting RADIUS/syslog/SNMP/NetFlow.
