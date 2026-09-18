@@ -1,0 +1,22 @@
+! RouterB - GRE Tunnel Lab
+hostname RouterB
+
+interface GigabitEthernet0/0
+ description UNDERLAY
+ ip address 10.10.20.2 255.255.255.0
+ no shutdown
+
+interface GigabitEthernet0/1
+ description LAN
+ ip address 192.168.2.1 255.255.255.0
+ no shutdown
+
+interface Tunnel1
+ description GRE OVERLAY TO RouterA
+ ip address 192.168.100.2 255.255.255.252
+ tunnel source GigabitEthernet0/0
+ tunnel destination 10.10.10.2
+ tunnel mode gre ip
+ no shutdown
+
+ip route 192.168.1.0 255.255.255.0 192.168.100.1
