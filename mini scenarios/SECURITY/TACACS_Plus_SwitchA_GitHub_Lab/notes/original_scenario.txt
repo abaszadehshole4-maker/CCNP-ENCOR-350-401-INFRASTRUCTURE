@@ -1,0 +1,19 @@
+Original scenario supplied by the user.
+
+Guidelines Topology Tasks
+
+Your company's network includes two Cisco switches: SwitchA and SwitchB.
+You plan to add a TACACS+ server to SwitchA. You want VTY connection
+attempts on SwitchA to be authenticated by the TACACS+ server.
+
+TACACS+ server:
+IP address: 192.168.1.100
+Encryption key: boson
+
+Configure SwitchA:
+- Configure AAA on the switch.
+- Configure the TACACS+ server parameters on the switch.
+- Create an authentication list named primary that configures the
+  TACACS+ server as the authentication method for users who remotely
+  log in to the switch.
+- Configure the first five VTY lines to use the primary authentication list.

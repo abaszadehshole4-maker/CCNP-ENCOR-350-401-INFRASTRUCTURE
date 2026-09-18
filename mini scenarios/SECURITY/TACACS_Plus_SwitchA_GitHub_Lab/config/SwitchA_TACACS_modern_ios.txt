@@ -1,0 +1,29 @@
+! SwitchA - TACACS+ AAA lab
+! Creator: Sholeh Abaszadeh
+!
+! Required server:
+!   IP  : 192.168.1.100
+!   Key : boson
+
+enable
+configure terminal
+
+! Enable AAA
+aaa new-model
+
+! Modern IOS TACACS+ server definition
+tacacs server TACACS-SERVER
+ address ipv4 192.168.1.100
+ key boson
+
+! Named authentication list: primary
+! TACACS+ first, local fallback
+aaa authentication login primary group tacacs+ local
+
+! Apply the named list to the first five VTY lines
+line vty 0 4
+ login authentication primary
+ transport input ssh telnet
+
+end
+write memory

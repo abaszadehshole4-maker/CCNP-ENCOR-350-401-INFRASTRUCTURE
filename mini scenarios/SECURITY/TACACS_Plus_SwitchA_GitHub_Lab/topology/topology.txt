@@ -1,0 +1,28 @@
+TACACS+ AAA LAB - LOGICAL TOPOLOGY
+
+                         192.168.1.100
+                    +-------------------+
+                    |    TACACS+ Server |
+                    +---------+---------+
+                              |
+                              |
+                         +----+----+
+                         | SwitchA |
+                         | VTY 0-4 |
+                         +----+----+
+                              |
+                              |
+                         +----+----+
+                         | SwitchB |
+                         +---------+
+
+Required:
+- TACACS+ Server = 192.168.1.100
+- Shared key = boson
+- SwitchA AAA authentication list = primary
+- VTY 0 through 4 use authentication list primary
+
+Note:
+The supplied task does not specify SwitchA/SwitchB interface numbers
+or their complete IP addressing. Those details should be adapted to
+the emulator/simulator topology being used.

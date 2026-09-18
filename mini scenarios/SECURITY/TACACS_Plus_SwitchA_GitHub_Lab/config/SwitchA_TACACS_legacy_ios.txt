@@ -1,0 +1,19 @@
+! SwitchA - Legacy IOS TACACS+ syntax
+! Use this only if the IOS image rejects:
+!     tacacs server TACACS-SERVER
+
+enable
+configure terminal
+
+aaa new-model
+
+tacacs-server host 192.168.1.100 key boson
+
+aaa authentication login primary group tacacs+ local
+
+line vty 0 4
+ login authentication primary
+ transport input ssh telnet
+
+end
+write memory
