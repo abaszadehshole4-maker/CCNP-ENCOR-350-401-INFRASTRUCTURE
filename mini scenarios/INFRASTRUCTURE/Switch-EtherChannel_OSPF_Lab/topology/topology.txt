@@ -1,0 +1,40 @@
+# Topology
+
+```text
+ PC1                         PC3
+192.168.102.131/27         192.168.102.132/27
+GW 192.168.102.129         GW 192.168.102.130
+   |                            |
+Fa0/3                         Fa0/3
+   |                            |
++---------+                 +---------+
+| SwitchA |                 | SwitchB |
+|         |                 |         |
++---------+                 +---------+
+   | Fa0/4                     | Fa0/4
+   |                           |
+ PC2                         PC4
+192.168.103.173/28         192.168.103.174/28
+GW 192.168.103.171         GW 192.168.103.172
+
+SwitchA Fa0/1 ================= Fa0/1 SwitchB
+SwitchA Fa0/2 ================= Fa0/2 SwitchB
+             Port-channel 1
+             Routed /30
+       SwitchA .10 / SwitchB .9
+             OSPF Area 0
+```
+
+### Logical OSPF design
+
+```text
+                 OSPF AREA 0
+          192.168.101.8/30
+        SwitchA ======= SwitchB
+           |               |
+      AREA 102         AREA 102
+      VLAN 2           VLAN 2
+
+      AREA 103         AREA 103
+      VLAN 4           VLAN 4
+```

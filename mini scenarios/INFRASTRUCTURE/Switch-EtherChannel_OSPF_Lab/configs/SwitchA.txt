@@ -1,0 +1,53 @@
+hostname SwitchA
+!
+! Enable Layer 3 routing
+ip routing
+!
+! VLANs
+vlan 2
+ name VLAN2
+vlan 4
+ name VLAN4
+!
+! Routed EtherChannel members
+interface range FastEthernet0/1 - 2
+ no switchport
+ channel-group 1 mode on
+ no shutdown
+!
+! Routed Port-Channel
+interface Port-channel1
+ no switchport
+ ip address 192.168.101.10 255.255.255.252
+ no shutdown
+!
+! VLAN 2 SVI
+interface Vlan2
+ ip address 192.168.102.129 255.255.255.224
+ no shutdown
+!
+! VLAN 4 SVI
+interface Vlan4
+ ip address 192.168.103.171 255.255.255.240
+ no shutdown
+!
+! Example access ports for the two local PCs
+interface FastEthernet0/3
+ switchport mode access
+ switchport access vlan 2
+ spanning-tree portfast
+ no shutdown
+!
+interface FastEthernet0/4
+ switchport mode access
+ switchport access vlan 4
+ spanning-tree portfast
+ no shutdown
+!
+! OSPF
+router ospf 10
+ network 192.168.101.8 0.0.0.3 area 0
+ network 192.168.102.128 0.0.0.31 area 102
+ network 192.168.103.160 0.0.0.15 area 103
+!
+end
