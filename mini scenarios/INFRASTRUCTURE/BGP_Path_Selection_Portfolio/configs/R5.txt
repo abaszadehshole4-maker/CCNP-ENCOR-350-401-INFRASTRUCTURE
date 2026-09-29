@@ -1,0 +1,21 @@
+hostname R5
+!
+interface Loopback0
+ ip address 5.5.5.5 255.255.255.255
+!
+interface GigabitEthernet0/0
+ description ISP3-to-R2
+ ip address 10.0.25.2 255.255.255.252
+ no shutdown
+!
+interface GigabitEthernet0/1
+ description ISP3-to-R6
+ ip address 10.0.56.1 255.255.255.252
+ no shutdown
+!
+router bgp 65030
+ bgp router-id 5.5.5.5
+ neighbor 10.0.25.1 remote-as 65001
+ neighbor 10.0.56.2 remote-as 65100
+!
+end

@@ -1,0 +1,33 @@
+# Verification Command Sheet
+
+## PE-SW
+show ip interface brief
+show ip vrf
+show ip route
+show ip route vrf BLUE
+show ip route vrf GREEN
+show bgp vpnv4 vrf BLUE summary
+show bgp vpnv4 vrf GREEN summary
+show bgp vpnv4 vrf BLUE
+show bgp vpnv4 vrf GREEN
+show ip cef vrf BLUE
+show ip cef vrf GREEN
+show running-config | section router bgp
+
+## CE-A
+show ip interface brief
+show ip route
+show ip bgp
+show ip bgp summary
+ping 172.31.100.1
+
+## CE-B
+show ip interface brief
+show ip route
+show ip bgp
+show ip bgp summary
+ping 172.31.200.1
+
+## VRF-aware tests
+ping vrf BLUE 172.31.100.2
+ping vrf GREEN 172.31.200.2

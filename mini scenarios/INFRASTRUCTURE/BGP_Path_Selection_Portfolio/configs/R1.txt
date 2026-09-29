@@ -1,0 +1,33 @@
+hostname R1
+!
+interface Loopback0
+ ip address 1.1.1.1 255.255.255.255
+!
+interface GigabitEthernet0/0
+ description R1-to-R2-iBGP
+ ip address 10.0.12.1 255.255.255.252
+ no shutdown
+!
+interface GigabitEthernet0/1
+ description R1-to-ISP1-R3
+ ip address 10.0.13.1 255.255.255.252
+ no shutdown
+!
+interface GigabitEthernet0/2
+ description R1-to-ISP2-R4
+ ip address 10.0.14.1 255.255.255.252
+ no shutdown
+!
+ip route 2.2.2.2 255.255.255.255 10.0.12.2
+!
+router bgp 65001
+ bgp router-id 1.1.1.1
+ neighbor 2.2.2.2 remote-as 65001
+ neighbor 2.2.2.2 update-source Loopback0
+ neighbor 2.2.2.2 next-hop-self
+ neighbor 10.0.13.2 remote-as 65010
+ neighbor 10.0.14.2 remote-as 65020
+ neighbor 10.0.13.2 soft-reconfiguration inbound
+ neighbor 10.0.14.2 soft-reconfiguration inbound
+!
+end

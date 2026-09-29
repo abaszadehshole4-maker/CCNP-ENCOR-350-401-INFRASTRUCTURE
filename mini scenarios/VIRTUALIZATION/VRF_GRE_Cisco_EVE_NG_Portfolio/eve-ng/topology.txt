@@ -1,0 +1,25 @@
+VRF + GRE EVE-NG TOPOLOGY
+
+R1 Gi0/0 -------- PC1
+192.168.10.1      192.168.10.10/24
+VRF CUSTOMER
+
+R1 Gi0/1 ---------------- R2 Gi0/1
+10.0.12.1/30             10.0.12.2/30
+GLOBAL UNDERLAY
+
+R1 Tunnel0 =============== R2 Tunnel0
+172.16.12.1/30             172.16.12.2/30
+CUSTOMER VRF / GRE OVERLAY
+
+R2 Gi0/0 -------- PC2
+192.168.20.1      192.168.20.10/24
+VRF CUSTOMER
+
+EVE-NG interface mapping:
+R1:
+  Gi0/0 -> PC1
+  Gi0/1 -> R2 Gi0/1
+R2:
+  Gi0/0 -> PC2
+  Gi0/1 -> R1 Gi0/1

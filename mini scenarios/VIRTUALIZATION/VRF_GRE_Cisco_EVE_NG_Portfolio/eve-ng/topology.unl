@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lab version="1" name="VRF-GRE-Cisco-EVE-NG">
+  <topology>
+    <nodes>
+      <node id="1" name="R1" type="qemu" template="vios" image="vios-adventerprisek9-m-15.9-3M6" ethernet="4" uuid="" config="0">
+        <interface id="0" name="Gi0/0" type="ethernet" network_id="1"/>
+        <interface id="1" name="Gi0/1" type="ethernet" network_id="2"/>
+      </node>
+      <node id="2" name="R2" type="qemu" template="vios" image="vios-adventerprisek9-m-15.9-3M6" ethernet="4" uuid="" config="0">
+        <interface id="0" name="Gi0/0" type="ethernet" network_id="3"/>
+        <interface id="1" name="Gi0/1" type="ethernet" network_id="2"/>
+      </node>
+      <node id="3" name="PC1" type="qemu" template="vpcs" image="vpcs" ethernet="2" uuid="" config="0">
+        <interface id="0" name="eth0" type="ethernet" network_id="1"/>
+      </node>
+      <node id="4" name="PC2" type="qemu" template="vpcs" image="vpcs" ethernet="2" uuid="" config="0">
+        <interface id="0" name="eth0" type="ethernet" network_id="3"/>
+      </node>
+    </nodes>
+    <networks>
+      <network id="1" type="bridge" name="LAN-A" left="120" top="220"/>
+      <network id="2" type="bridge" name="UNDERLAY" left="400" top="140"/>
+      <network id="3" type="bridge" name="LAN-B" left="680" top="220"/>
+    </networks>
+  </topology>
+</lab>

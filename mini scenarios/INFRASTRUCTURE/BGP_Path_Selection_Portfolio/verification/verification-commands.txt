@@ -1,0 +1,38 @@
+# Verification Command Checklist
+
+## Interfaces and IP
+show ip interface brief
+show ip interface
+show running-config | section interface
+ping <neighbor-ip>
+
+## BGP sessions
+show ip bgp summary
+show ip bgp neighbors
+show ip bgp neighbors <neighbor>
+
+## BGP routes
+show ip bgp
+show ip bgp 203.0.113.0
+show ip route 203.0.113.0
+
+## Policy
+show ip prefix-list
+show ip prefix-list detail
+show route-map
+show running-config | section router bgp
+
+## Per-neighbor advertisements
+show ip bgp neighbors 10.0.13.2 advertised-routes
+show ip bgp neighbors 10.0.13.2 received-routes
+show ip bgp neighbors 10.0.13.2 routes
+
+## Reset policy without tearing down the session
+clear ip bgp 10.0.13.2 soft in
+clear ip bgp 10.0.13.2 soft out
+
+## Debug
+debug ip bgp
+debug ip bgp updates
+debug ip bgp events
+undebug all

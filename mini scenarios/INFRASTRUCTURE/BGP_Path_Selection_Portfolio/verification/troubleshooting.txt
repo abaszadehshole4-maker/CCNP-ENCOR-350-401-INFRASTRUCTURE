@@ -1,0 +1,64 @@
+# Troubleshooting Runbook
+
+## 1. Neighbor is Idle / Active
+1. `show ip interface brief`
+2. `ping <neighbor>`
+3. `show ip route <neighbor>`
+4. `show ip bgp summary`
+5. `show ip bgp neighbors <neighbor>`
+
+Check:
+- remote AS
+- neighbor IP
+- interface state
+- reachability
+- update-source
+- ACL/firewall
+- eBGP multihop if the peer is not directly connected
+
+## 2. Neighbor is Established but no routes
+Run:
+```cisco
+show ip bgp neighbors <neighbor> advertised-routes
+show ip bgp neighbors <neighbor> routes
+show ip bgp neighbors <neighbor> received-routes
+show ip prefix-list
+show route-map
+```
+
+## 3. Route is received but rejected
+Look for:
+- inbound prefix-list
+- inbound route-map
+- AS_PATH loop detection
+- next-hop reachability
+
+## 4. Route exists in BGP but not in RIB
+```cisco
+show ip bgp <prefix>
+show ip route <prefix>
+```
+
+Check whether:
+- another routing protocol has a better administrative distance
+- BGP next hop is reachable
+- the BGP path is actually best (`>`)
+
+## 5. Policy changed but result did not change
+Use:
+```cisco
+clear ip bgp <neighbor> soft in
+clear ip bgp <neighbor> soft out
+```
+
+Avoid a hard clear unless necessary because a hard clear tears down the BGP session.
+
+## 6. MED experiment does not behave as expected
+Remember:
+- lower MED wins
+- MED is normally compared among paths from the same neighboring AS
+- this lab intentionally uses `bgp always-compare-med` to compare paths learned from different ASes
+- higher-priority attributes must be equal before MED can decide the winner
+
+## 7. Weight experiment does not affect the other router
+That is expected. Weight is Cisco-local and is not advertised to BGP neighbors.

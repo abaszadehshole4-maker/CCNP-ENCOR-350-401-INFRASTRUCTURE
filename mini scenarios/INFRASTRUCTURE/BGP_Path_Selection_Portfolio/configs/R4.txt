@@ -1,0 +1,21 @@
+hostname R4
+!
+interface Loopback0
+ ip address 4.4.4.4 255.255.255.255
+!
+interface GigabitEthernet0/0
+ description ISP2-to-R1
+ ip address 10.0.14.2 255.255.255.252
+ no shutdown
+!
+interface GigabitEthernet0/1
+ description ISP2-to-R6
+ ip address 10.0.46.1 255.255.255.252
+ no shutdown
+!
+router bgp 65020
+ bgp router-id 4.4.4.4
+ neighbor 10.0.14.1 remote-as 65001
+ neighbor 10.0.46.2 remote-as 65100
+!
+end

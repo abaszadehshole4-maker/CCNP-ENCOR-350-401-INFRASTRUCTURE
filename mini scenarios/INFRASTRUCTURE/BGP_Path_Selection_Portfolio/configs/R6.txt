@@ -1,0 +1,37 @@
+hostname R6
+!
+interface Loopback0
+ ip address 6.6.6.6 255.255.255.255
+!
+interface Loopback100
+ description Portfolio destination prefix
+ ip address 203.0.113.1 255.255.255.0
+!
+interface Loopback101
+ description Secondary prefix used for filtering
+ ip address 198.51.100.1 255.255.255.0
+!
+interface GigabitEthernet0/0
+ description R6-to-ISP1-R3
+ ip address 10.0.36.2 255.255.255.252
+ no shutdown
+!
+interface GigabitEthernet0/1
+ description R6-to-ISP2-R4
+ ip address 10.0.46.2 255.255.255.252
+ no shutdown
+!
+interface GigabitEthernet0/2
+ description R6-to-ISP3-R5
+ ip address 10.0.56.2 255.255.255.252
+ no shutdown
+!
+router bgp 65100
+ bgp router-id 6.6.6.6
+ network 203.0.113.0 mask 255.255.255.0
+ network 198.51.100.0 mask 255.255.255.0
+ neighbor 10.0.36.1 remote-as 65010
+ neighbor 10.0.46.1 remote-as 65020
+ neighbor 10.0.56.1 remote-as 65030
+!
+end

@@ -1,0 +1,27 @@
+hostname R2-SPOKE
+!
+interface GigabitEthernet0/0
+ ip address 172.16.0.2 255.255.255.0
+ no shutdown
+!
+interface GigabitEthernet0/1
+ ip address 10.10.10.1 255.255.255.0
+ no shutdown
+!
+interface Tunnel0
+ ip address 10.255.0.2 255.255.255.0
+ no ip redirects
+ ip nhrp network-id 100
+ ip nhrp nhs 10.255.0.1
+ ip nhrp map 10.255.0.1 172.16.0.1
+ ip nhrp map multicast 172.16.0.1
+ ip nhrp shortcut
+ tunnel source GigabitEthernet0/0
+ tunnel mode gre multipoint
+ no shutdown
+!
+router eigrp 100
+ network 10.255.0.0 0.0.0.255
+ network 10.10.10.0 0.0.0.255
+ no auto-summary
+!

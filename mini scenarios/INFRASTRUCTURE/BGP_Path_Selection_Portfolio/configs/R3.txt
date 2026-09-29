@@ -1,0 +1,21 @@
+hostname R3
+!
+interface Loopback0
+ ip address 3.3.3.3 255.255.255.255
+!
+interface GigabitEthernet0/0
+ description ISP1-to-R1
+ ip address 10.0.13.2 255.255.255.252
+ no shutdown
+!
+interface GigabitEthernet0/1
+ description ISP1-to-R6
+ ip address 10.0.36.1 255.255.255.252
+ no shutdown
+!
+router bgp 65010
+ bgp router-id 3.3.3.3
+ neighbor 10.0.13.1 remote-as 65001
+ neighbor 10.0.36.2 remote-as 65100
+!
+end

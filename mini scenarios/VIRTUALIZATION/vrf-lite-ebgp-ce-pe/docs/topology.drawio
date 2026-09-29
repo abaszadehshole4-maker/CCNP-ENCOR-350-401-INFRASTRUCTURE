@@ -1,0 +1,16 @@
+<mxfile host="app.diagrams.net" version="29.0.0"><diagram id="vrfbgp" name="VRF-Lite eBGP CE-PE"><mxGraphModel page="1" pageWidth="1600" pageHeight="1000"><root><mxCell id="0"/><mxCell id="1" parent="0"/>
+<mxCell id="pe" value="PE-SW&#xa;AS 65000&#xa;VRF BLUE + VRF GREEN" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=16" vertex="1" parent="1"><mxGeometry x="560" y="180" width="280" height="120" as="geometry"/></mxCell>
+<mxCell id="a" value="CE-A&#xa;AS 65101&#xa;172.31.100.2/30&#xa;192.168.10.0/24" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=14" vertex="1" parent="1"><mxGeometry x="130" y="180" width="250" height="120" as="geometry"/></mxCell>
+<mxCell id="b" value="CE-B&#xa;AS 65102&#xa;172.31.200.2/30&#xa;192.168.20.0/24" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontStyle=1;fontSize=14" vertex="1" parent="1"><mxGeometry x="1020" y="180" width="250" height="120" as="geometry"/></mxCell>
+<mxCell id="swa" value="SW-A&#xa;VLAN 10" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13" vertex="1" parent="1"><mxGeometry x="155" y="420" width="200" height="70" as="geometry"/></mxCell>
+<mxCell id="swb" value="SW-B&#xa;VLAN 20" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13" vertex="1" parent="1"><mxGeometry x="1045" y="420" width="200" height="70" as="geometry"/></mxCell>
+<mxCell id="pca" value="PC-A&#xa;192.168.10.10" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13" vertex="1" parent="1"><mxGeometry x="170" y="570" width="170" height="60" as="geometry"/></mxCell>
+<mxCell id="pcb" value="PC-B&#xa;192.168.20.10" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13" vertex="1" parent="1"><mxGeometry x="1060" y="570" width="170" height="60" as="geometry"/></mxCell>
+<mxCell id="e1" value="eBGP / BLUE" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeWidth=3;endArrow=none" edge="1" parent="1" source="a" target="pe"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="e2" value="eBGP / GREEN" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeWidth=3;endArrow=none" edge="1" parent="1" source="pe" target="b"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="e3" value="Customer Alpha" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=none" edge="1" parent="1" source="a" target="swa"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="e4" value="Customer Beta" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=none" edge="1" parent="1" source="b" target="swb"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=none" edge="1" parent="1" source="swa" target="pca"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="e6" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=none" edge="1" parent="1" source="swb" target="pcb"><mxGeometry relative="1" as="geometry"/></mxCell>
+<mxCell id="n" value="Route isolation: BLUE ≠ GREEN" style="shape=note;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14" vertex="1" parent="1"><mxGeometry x="560" y="55" width="280" height="60" as="geometry"/></mxCell>
+</root></mxGraphModel></diagram></mxfile>

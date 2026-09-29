@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lab version="1" name="BGP_Path_Selection_Portfolio">
+  <topology>
+    <nodes>
+      <node id="1" name="R1" type="qemu" template="vios" image="vios-adventerprisek9-m.vmdk.SPA.156-2.T" ethernet="3" config="0" delay="0" icon="Router.png" left="0" top="0">
+        <interface id="0" name="Gi0/0" type="ethernet" network_id="1" />
+        <interface id="1" name="Gi0/1" type="ethernet" network_id="2" />
+        <interface id="2" name="Gi0/2" type="ethernet" network_id="3" />
+      </node>
+      <node id="2" name="R2" type="qemu" template="vios" image="vios-adventerprisek9-m.vmdk.SPA.156-2.T" ethernet="2" config="0" delay="0" icon="Router.png" left="0" top="0">
+        <interface id="0" name="Gi0/0" type="ethernet" network_id="1" />
+        <interface id="1" name="Gi0/1" type="ethernet" network_id="4" />
+      </node>
+      <node id="3" name="R3" type="qemu" template="vios" image="vios-adventerprisek9-m.vmdk.SPA.156-2.T" ethernet="2" config="0" delay="0" icon="Router.png" left="0" top="0">
+        <interface id="0" name="Gi0/0" type="ethernet" network_id="2" />
+        <interface id="1" name="Gi0/1" type="ethernet" network_id="5" />
+      </node>
+      <node id="4" name="R4" type="qemu" template="vios" image="vios-adventerprisek9-m.vmdk.SPA.156-2.T" ethernet="2" config="0" delay="0" icon="Router.png" left="0" top="0">
+        <interface id="0" name="Gi0/0" type="ethernet" network_id="3" />
+        <interface id="1" name="Gi0/1" type="ethernet" network_id="6" />
+      </node>
+      <node id="5" name="R5" type="qemu" template="vios" image="vios-adventerprisek9-m.vmdk.SPA.156-2.T" ethernet="2" config="0" delay="0" icon="Router.png" left="0" top="0">
+        <interface id="0" name="Gi0/0" type="ethernet" network_id="4" />
+        <interface id="1" name="Gi0/1" type="ethernet" network_id="7" />
+      </node>
+      <node id="6" name="R6" type="qemu" template="vios" image="vios-adventerprisek9-m.vmdk.SPA.156-2.T" ethernet="3" config="0" delay="0" icon="Router.png" left="0" top="0">
+        <interface id="0" name="Gi0/0" type="ethernet" network_id="5" />
+        <interface id="1" name="Gi0/1" type="ethernet" network_id="6" />
+        <interface id="2" name="Gi0/2" type="ethernet" network_id="7" />
+      </node>
+    </nodes>
+    <networks>
+      <network id="1" type="bridge" name="R1-R2" />
+      <network id="2" type="bridge" name="R1-ISP1" />
+      <network id="3" type="bridge" name="R1-ISP2" />
+      <network id="4" type="bridge" name="R2-ISP3" />
+      <network id="5" type="bridge" name="ISP1-R6" />
+      <network id="6" type="bridge" name="ISP2-R6" />
+      <network id="7" type="bridge" name="ISP3-R6" />
+    </networks>
+  </topology>
+</lab>

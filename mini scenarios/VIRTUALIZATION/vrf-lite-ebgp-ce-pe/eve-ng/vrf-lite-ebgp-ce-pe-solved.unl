@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lab version="1" name="vrf-lite-ebgp-ce-pe-solved" author="MohammadHadi Joshaghani" id="00fc7be4-f664-4f17-880b-09c21ac4650a"><description>VRF-Lite multi-CE eBGP portfolio lab.</description><topology><nodes>
+<node id="1" name="PE-SW" type="qemu" template="viosl2" image="viosl2" cpu="1" ram="768" ethernet="2" console="telnet" config="1" left="540" top="180">
+<interface id="0" name="GigabitEthernet1/0/1" type="ethernet" network_id="10"/>
+<interface id="1" name="GigabitEthernet1/0/2" type="ethernet" network_id="11"/>
+</node>
+<node id="2" name="CE-A" type="qemu" template="vios" image="vios" cpu="1" ram="1024" ethernet="2" console="telnet" config="2" left="170" top="180">
+<interface id="0" name="GigabitEthernet0/0" type="ethernet" network_id="10"/>
+<interface id="1" name="GigabitEthernet0/1" type="ethernet" network_id="20"/>
+</node>
+<node id="3" name="CE-B" type="qemu" template="vios" image="vios" cpu="1" ram="1024" ethernet="2" console="telnet" config="3" left="900" top="180">
+<interface id="0" name="GigabitEthernet0/0" type="ethernet" network_id="11"/>
+<interface id="1" name="GigabitEthernet0/1" type="ethernet" network_id="21"/>
+</node>
+<node id="4" name="SW-A" type="qemu" template="viosl2" image="viosl2" cpu="1" ram="768" ethernet="2" console="telnet" config="4" left="170" top="420">
+<interface id="0" name="GigabitEthernet0/0" type="ethernet" network_id="20"/>
+<interface id="1" name="GigabitEthernet0/1" type="ethernet" network_id="30"/>
+</node>
+<node id="5" name="SW-B" type="qemu" template="viosl2" image="viosl2" cpu="1" ram="768" ethernet="2" console="telnet" config="5" left="900" top="420">
+<interface id="0" name="GigabitEthernet0/0" type="ethernet" network_id="21"/>
+<interface id="1" name="GigabitEthernet0/1" type="ethernet" network_id="31"/>
+</node>
+<node id="6" name="PC-A" type="qemu" template="vpcs" image="vpcs" cpu="1" ram="128" ethernet="2" console="telnet" config="0" left="170" top="570">
+<interface id="0" name="eth0" type="ethernet" network_id="30"/>
+</node>
+<node id="7" name="PC-B" type="qemu" template="vpcs" image="vpcs" cpu="1" ram="128" ethernet="2" console="telnet" config="0" left="900" top="570">
+<interface id="0" name="eth0" type="ethernet" network_id="31"/>
+</node>
+</nodes><networks>
+<network id="10" type="bridge" name="PE-CE-BLUE"/>
+<network id="11" type="bridge" name="PE-CE-GREEN"/>
+<network id="20" type="bridge" name="LAN-A-SW"/>
+<network id="21" type="bridge" name="LAN-B-SW"/>
+<network id="30" type="bridge" name="PC-A-LINK"/>
+<network id="31" type="bridge" name="PC-B-LINK"/>
+</networks></topology><configs>
+<config id="1" node="PE-SW">aG9zdG5hbWUgUEUtU1cKIQpubyBpcCBkb21haW4tbG9va3VwCmlwIHJvdXRpbmcKIQppcCB2cmYgQkxVRQogcmQgNjUwMDA6MTAxCiEKaXAgdnJmIEdSRUVOCiByZCA2NTAwMDoxMDIKIQppbnRlcmZhY2UgTG9vcGJhY2sxMDAKIGRlc2NyaXB0aW9uIEdMT0JBTC1ST1VURVItSUQKIGlwIGFkZHJlc3MgMTAuMjU1LjEwMC4xIDI1NS4yNTUuMjU1LjI1NQohCmludGVyZmFjZSBHaWdhYml0RXRoZXJuZXQxLzAvMQogZGVzY3JpcHRpb24gQ0UtQS1CTFVFCiBubyBzd2l0Y2hwb3J0CiBpcCB2cmYgZm9yd2FyZGluZyBCTFVFCiBpcCBhZGRyZXNzIDE3Mi4zMS4xMDAuMSAyNTUuMjU1LjI1NS4yNTIKIG5vIHNodXRkb3duCiEKaW50ZXJmYWNlIEdpZ2FiaXRFdGhlcm5ldDEvMC8yCiBkZXNjcmlwdGlvbiBDRS1CLUdSRUVOCiBubyBzd2l0Y2hwb3J0CiBpcCB2cmYgZm9yd2FyZGluZyBHUkVFTgogaXAgYWRkcmVzcyAxNzIuMzEuMjAwLjEgMjU1LjI1NS4yNTUuMjUyCiBubyBzaHV0ZG93bgohCnJvdXRlciBiZ3AgNjUwMDAKIGJncCByb3V0ZXItaWQgMTAuMjU1LjEwMC4xCiBhZGRyZXNzLWZhbWlseSBpcHY0IHZyZiBCTFVFCiAgbmVpZ2hib3IgMTcyLjMxLjEwMC4yIHJlbW90ZS1hcyA2NTEwMQogIG5laWdoYm9yIDE3Mi4zMS4xMDAuMiBhY3RpdmF0ZQogZXhpdC1hZGRyZXNzLWZhbWlseQogYWRkcmVzcy1mYW1pbHkgaXB2NCB2cmYgR1JFRU4KICBuZWlnaGJvciAxNzIuMzEuMjAwLjIgcmVtb3RlLWFzIDY1MTAyCiAgbmVpZ2hib3IgMTcyLjMxLjIwMC4yIGFjdGl2YXRlCiBleGl0LWFkZHJlc3MtZmFtaWx5CiEKZW5kCg==</config>
+<config id="2" node="CE-A">aG9zdG5hbWUgQ0UtQQohCm5vIGlwIGRvbWFpbi1sb29rdXAKIQppbnRlcmZhY2UgR2lnYWJpdEV0aGVybmV0MC8wCiBkZXNjcmlwdGlvbiBUTy1QRS1TVy1CTFVFCiBpcCBhZGRyZXNzIDE3Mi4zMS4xMDAuMiAyNTUuMjU1LjI1NS4yNTIKIG5vIHNodXRkb3duCiEKaW50ZXJmYWNlIEdpZ2FiaXRFdGhlcm5ldDAvMQogZGVzY3JpcHRpb24gQ1VTVE9NRVItQUxQSEEtTEFOCiBpcCBhZGRyZXNzIDE5Mi4xNjguMTAuMSAyNTUuMjU1LjI1NS4wCiBubyBzaHV0ZG93bgohCmludGVyZmFjZSBMb29wYmFjazAKIGRlc2NyaXB0aW9uIEFMUEhBLVJPVVRFCiBpcCBhZGRyZXNzIDE5Mi4wLjIuMTAgMjU1LjI1NS4yNTUuMjU1CiEKcm91dGVyIGJncCA2NTEwMQogYmdwIHJvdXRlci1pZCAxOTIuMC4yLjEwCiBuZWlnaGJvciAxNzIuMzEuMTAwLjEgcmVtb3RlLWFzIDY1MDAwCiBuZXR3b3JrIDE5Mi4wLjIuMTAgbWFzayAyNTUuMjU1LjI1NS4yNTUKIG5ldHdvcmsgMTkyLjE2OC4xMC4wIG1hc2sgMjU1LjI1NS4yNTUuMAohCmVuZAo=</config>
+<config id="3" node="CE-B">aG9zdG5hbWUgQ0UtQgohCm5vIGlwIGRvbWFpbi1sb29rdXAKIQppbnRlcmZhY2UgR2lnYWJpdEV0aGVybmV0MC8wCiBkZXNjcmlwdGlvbiBUTy1QRS1TVy1HUkVFTgogaXAgYWRkcmVzcyAxNzIuMzEuMjAwLjIgMjU1LjI1NS4yNTUuMjUyCiBubyBzaHV0ZG93bgohCmludGVyZmFjZSBHaWdhYml0RXRoZXJuZXQwLzEKIGRlc2NyaXB0aW9uIENVU1RPTUVSLUJFVEEtTEFOCiBpcCBhZGRyZXNzIDE5Mi4xNjguMjAuMSAyNTUuMjU1LjI1NS4wCiBubyBzaHV0ZG93bgohCmludGVyZmFjZSBMb29wYmFjazAKIGRlc2NyaXB0aW9uIEJFVEEtUk9VVEUKIGlwIGFkZHJlc3MgMTkyLjAuMi4yMCAyNTUuMjU1LjI1NS4yNTUKIQpyb3V0ZXIgYmdwIDY1MTAyCiBiZ3Agcm91dGVyLWlkIDE5Mi4wLjIuMjAKIG5laWdoYm9yIDE3Mi4zMS4yMDAuMSByZW1vdGUtYXMgNjUwMDAKIG5ldHdvcmsgMTkyLjAuMi4yMCBtYXNrIDI1NS4yNTUuMjU1LjI1NQogbmV0d29yayAxOTIuMTY4LjIwLjAgbWFzayAyNTUuMjU1LjI1NS4wCiEKZW5kCg==</config>
+<config id="4" node="SW-A">aG9zdG5hbWUgU1ctQQohCm5vIGlwIGRvbWFpbi1sb29rdXAKdmxhbiAxMAogbmFtZSBDVVNUT01FUi1BTFBIQQohCmludGVyZmFjZSBHaWdhYml0RXRoZXJuZXQwLzAKIGRlc2NyaXB0aW9uIFRPLUNFLUEKIHN3aXRjaHBvcnQgbW9kZSBhY2Nlc3MKIHN3aXRjaHBvcnQgYWNjZXNzIHZsYW4gMTAKIG5vIHNodXRkb3duCiEKaW50ZXJmYWNlIEdpZ2FiaXRFdGhlcm5ldDAvMQogZGVzY3JpcHRpb24gVE8tUEMtQQogc3dpdGNocG9ydCBtb2RlIGFjY2Vzcwogc3dpdGNocG9ydCBhY2Nlc3MgdmxhbiAxMAogc3Bhbm5pbmctdHJlZSBwb3J0ZmFzdAogbm8gc2h1dGRvd24KIQppbnRlcmZhY2UgVmxhbjEwCiBpcCBhZGRyZXNzIDE5Mi4xNjguMTAuMiAyNTUuMjU1LjI1NS4wCiBubyBzaHV0ZG93bgohCmlwIGRlZmF1bHQtZ2F0ZXdheSAxOTIuMTY4LjEwLjEKIQplbmQK</config>
+<config id="5" node="SW-B">aG9zdG5hbWUgU1ctQgohCm5vIGlwIGRvbWFpbi1sb29rdXAKdmxhbiAyMAogbmFtZSBDVVNUT01FUi1CRVRBCiEKaW50ZXJmYWNlIEdpZ2FiaXRFdGhlcm5ldDAvMAogZGVzY3JpcHRpb24gVE8tQ0UtQgogc3dpdGNocG9ydCBtb2RlIGFjY2Vzcwogc3dpdGNocG9ydCBhY2Nlc3MgdmxhbiAyMAogbm8gc2h1dGRvd24KIQppbnRlcmZhY2UgR2lnYWJpdEV0aGVybmV0MC8xCiBkZXNjcmlwdGlvbiBUTy1QQy1CCiBzd2l0Y2hwb3J0IG1vZGUgYWNjZXNzCiBzd2l0Y2hwb3J0IGFjY2VzcyB2bGFuIDIwCiBzcGFubmluZy10cmVlIHBvcnRmYXN0CiBubyBzaHV0ZG93bgohCmludGVyZmFjZSBWbGFuMjAKIGlwIGFkZHJlc3MgMTkyLjE2OC4yMC4yIDI1NS4yNTUuMjU1LjAKIG5vIHNodXRkb3duCiEKaXAgZGVmYXVsdC1nYXRld2F5IDE5Mi4xNjguMjAuMQohCmVuZAo=</config>
+</configs></lab>
