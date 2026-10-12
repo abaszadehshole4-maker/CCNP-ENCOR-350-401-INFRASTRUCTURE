@@ -1,0 +1,29 @@
+! RouterA - Dynamic NAT using a pool
+! Scenario: GigabitEthernet0/0 connects to ISP1; GigabitEthernet0/1 connects to the inside LAN.
+! Inside network: 10.1.1.0/26
+! NAT pool: 192.168.1.101 through 192.168.1.164 (64 addresses)
+
+enable
+configure terminal
+hostname RouterA
+!
+interface GigabitEthernet0/0
+ description OUTSIDE_TO_ISP1
+ ip nat outside
+ no shutdown
+ exit
+!
+interface GigabitEthernet0/1
+ description INSIDE_LAN_10.1.1.0_26
+ ip address 10.1.1.1 255.255.255.192
+ ip nat inside
+ no shutdown
+ exit
+!
+access-list 1 permit 10.1.1.0 0.0.0.63
+!
+ip nat pool exsim 192.168.1.101 192.168.1.164 netmask 255.255.255.0
+ip nat inside source list 1 pool exsim
+!
+end
+write memory
