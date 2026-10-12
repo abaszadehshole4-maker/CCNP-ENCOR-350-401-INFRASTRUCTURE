@@ -1,0 +1,14 @@
+PC1
+  IPv4 address: 192.168.10.11
+  Subnet mask:  255.255.255.0
+  Gateway:      192.168.10.1
+
+PC2
+  IPv4 address: 192.168.10.12
+  Subnet mask:  255.255.255.0
+  Gateway:      192.168.10.1
+
+SW1
+  Use it as a Layer 2 access switch. For this basic lab, all four connected ports
+  can remain in the default access VLAN (often VLAN 1): PC1, PC2, R1 G0/0, R2 G0/0.
+  No switch management IP or special GLBP configuration is required.

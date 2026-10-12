@@ -1,0 +1,21 @@
+digraph GLBP {
+  graph [rankdir=TB, bgcolor="white", pad="0.3", nodesep="0.55", ranksep="0.65", label="GLBP First-Hop Redundancy and Load Balancing Lab\nAuthor: Sholeh", labelloc=t, fontsize=20, fontname="Arial"];
+  node [shape=box, style="rounded,filled", fontname="Arial", fontsize=11, color="#526579", penwidth=1.4, margin="0.18,0.12"];
+  edge [fontname="Arial", fontsize=10, color="#46586a", penwidth=1.5, arrowsize=0.8];
+  PC1 [label="PC1\n192.168.10.11/24\nGW: 192.168.10.1", fillcolor="#e7f2ff"];
+  PC2 [label="PC2\n192.168.10.12/24\nGW: 192.168.10.1", fillcolor="#e7f2ff"];
+  SW1 [label="SW1 - Layer 2 switch\nUser LAN: 192.168.10.0/24", fillcolor="#fff1cc"];
+  R1 [label="R1 - Preferred AVG\nG0/0: 192.168.10.2/24\nG0/1: 10.0.12.1/30\nGLBP priority: 120", fillcolor="#def5e5"];
+  R2 [label="R2 - Backup AVG / AVF\nG0/0: 192.168.10.3/24\nG0/1: 10.0.23.1/30\nGLBP priority: 100", fillcolor="#def5e5"];
+  ISP [label="R3 - Upstream / ISP simulator\nG0/0: 10.0.12.2/30\nG0/1: 10.0.23.2/30\nLo0: 203.0.113.1/32", fillcolor="#f5e5ff"];
+  V [shape=note, label="Shared default gateway (virtual IP)\n192.168.10.1\nGLBP group 10 | round-robin", fillcolor="#ffe5e5", color="#b55a5a"];
+  {rank=same; PC1; PC2}
+  {rank=same; R1; R2}
+  PC1 -> SW1 [dir=none];
+  PC2 -> SW1 [dir=none];
+  SW1 -> R1 [dir=none, label="G0/0"];
+  SW1 -> R2 [dir=none, label="G0/0"];
+  R1 -> ISP [dir=none, label="10.0.12.0/30\nG0/1 - G0/0"];
+  R2 -> ISP [dir=none, label="10.0.23.0/30\nG0/1 - G0/1"];
+  V -> SW1 [style=dashed, arrowhead=none, color="#b55a5a", constraint=false];
+}
