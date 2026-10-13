@@ -1,0 +1,20 @@
+# R1 — intended VRRP Master
+# Verify syntax/support for your exact Cisco platform and software.
+enable
+configure terminal
+hostname R1
+interface GigabitEthernet0/0
+ description Shared LAN connection
+ ip address 192.168.10.1 255.255.255.0
+ no shutdown
+ vrrp 10 ip 192.168.10.254
+ vrrp 10 priority 120
+ vrrp 10 preempt
+exit
+end
+write memory
+
+! Verification (commands vary by platform):
+show ip interface brief
+show vrrp
+show vrrp brief

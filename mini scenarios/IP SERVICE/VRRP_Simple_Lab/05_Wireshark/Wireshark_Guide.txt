@@ -1,0 +1,37 @@
+WIRESHARK GUIDE — VRRP
+Author: Sholeh
+
+PURPOSE
+Capture VRRP advertisements and inspect details that help identify the Master router.
+
+CAPTURE STEPS
+1. Start Wireshark on a computer connected to the same Layer 2 LAN as R1 and R2.
+2. Select the correct Ethernet interface and start capturing.
+3. Let the capture run for 30–60 seconds while both routers are active.
+4. A normal switch port may not see packets exchanged between the routers. If no packets appear, use a switch SPAN/mirror port or an appropriate virtual lab capture link.
+
+DISPLAY FILTERS
+- `vrrp`
+- `ip.proto == 112`
+- `ip.dst == 224.0.0.18`
+- `eth.dst == 01:00:5e:00:00:12`
+
+WHAT TO LOOK FOR
+- IPv4 VRRP uses IP protocol number 112.
+- IPv4 VRRP advertisements use multicast destination 224.0.0.18 and Ethernet multicast destination 01:00:5e:00:00:12.
+- Expand VRRP packet details to inspect group/VRID, priority, advertisement interval, and virtual IP fields when decoded by your Wireshark version.
+- R1 is configured with priority 120 and R2 with priority 100. R1 should normally be Master while both are healthy.
+
+FAILOVER OBSERVATION
+1. In an isolated lab only, stop R1's VRRP participation or shut down its LAN interface.
+2. Observe whether R2 becomes Master and continues VRRP advertisements.
+3. Restore R1 and verify the Master/Backup state again.
+
+TROUBLESHOOTING
+- If `vrrp` finds no packets, try `ip.proto == 112`.
+- Confirm the capture interface is connected to the correct LAN.
+- Use port mirroring/SPAN if the switch does not forward the routers' multicast traffic to the capture host.
+- Packet fields shown depend on the Wireshark version and VRRP version.
+
+SAFETY
+Do not perform failover tests on production equipment.

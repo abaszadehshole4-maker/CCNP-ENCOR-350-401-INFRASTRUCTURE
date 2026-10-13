@@ -1,0 +1,8 @@
+Simple VRRP topology — Author: Sholeh
+
+PC1: 192.168.10.10/24; gateway 192.168.10.254
+R1 G0/0: 192.168.10.1/24; VRRP group 10; priority 120
+R2 G0/0: 192.168.10.2/24; VRRP group 10; priority 100
+VRRP virtual IP: 192.168.10.254
+
+PC1, R1 G0/0, and R2 G0/0 connect to the same Layer 2 switch/VLAN.

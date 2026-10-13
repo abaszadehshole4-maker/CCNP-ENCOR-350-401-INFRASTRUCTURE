@@ -1,0 +1,31 @@
+SIMPLE VRRP LAB — PURPOSE AND EXPLANATION
+Author: Sholeh
+
+PURPOSE
+VRRP (Virtual Router Redundancy Protocol) provides default-gateway redundancy. Hosts use a shared virtual IP instead of relying on only one router's physical address.
+
+HOW IT WORKS
+1. R1 has physical LAN address 192.168.10.1/24.
+2. R2 has physical LAN address 192.168.10.2/24.
+3. Both routers use VRRP group 10 and virtual IP 192.168.10.254.
+4. R1 priority is 120; R2 priority is 100. When both are healthy, R1 should normally become Master due to its higher priority.
+5. PC1 uses 192.168.10.254 as its default gateway.
+6. If R1 stops participating in VRRP, R2 can become Master and take over the virtual gateway, provided the LAN and R2 remain operational.
+
+KEY TERMS
+- Virtual IP (VIP): Shared gateway address configured for the VRRP group.
+- Master: Router currently forwarding traffic for the VRRP group.
+- Backup: Router ready to take over if the Master becomes unavailable.
+- Priority: Higher priority generally wins the Master election; a common default is 100.
+- Preempt: Allows a higher-priority router to reclaim Master status when it returns, depending on platform behavior and configuration.
+
+WHY IT MATTERS
+Without gateway redundancy, failure of the only gateway router may interrupt communication with other networks. VRRP allows a second router to take over the shared gateway.
+
+REQUIREMENTS AND LIMITATIONS
+- Both routers must share the same Layer 2 segment/VLAN.
+- VRRP group and virtual IP must match on both routers.
+- Router interface IPs must be unique and in the same subnet.
+- This example does not configure upstream routing or internet access.
+- Command syntax and support vary by Cisco platform/software. Check the documentation for your exact device.
+- Test failover only in an isolated lab, not on production equipment.
