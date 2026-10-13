@@ -1,0 +1,22 @@
+!
+hostname R2
+no ip domain-lookup
+!
+interface GigabitEthernet0/0
+ description LAN-to-SW1-VLAN10
+ ip address 192.168.10.3 255.255.255.0
+ standby version 2
+ standby 10 ip 192.168.10.1
+ standby 10 priority 100
+ standby 10 preempt
+ standby 10 authentication md5 key-string HSRP-LAB-Only
+ no shutdown
+!
+interface GigabitEthernet0/1
+ description WAN-to-ISP-G0/1
+ ip address 10.0.2.2 255.255.255.252
+ no shutdown
+!
+ip route 0.0.0.0 0.0.0.0 10.0.2.1
+!
+end

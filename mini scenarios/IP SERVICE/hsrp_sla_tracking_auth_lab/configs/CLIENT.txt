@@ -1,0 +1,9 @@
+Client IPv4 settings (configure in the host OS or simulator):
+  IP address:      192.168.10.100
+  Subnet mask:     255.255.255.0
+  Default gateway: 192.168.10.1
+  DNS:             optional for this lab
+
+Useful tests:
+  ping 192.168.10.1
+  ping 203.0.113.1

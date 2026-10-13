@@ -1,0 +1,32 @@
+!
+hostname R1
+no ip domain-lookup
+!
+interface GigabitEthernet0/0
+ description LAN-to-SW1-VLAN10
+ ip address 192.168.10.2 255.255.255.0
+ standby version 2
+ standby 10 ip 192.168.10.1
+ standby 10 priority 110
+ standby 10 preempt
+ standby 10 authentication md5 key-string HSRP-LAB-Only
+ standby 10 track 10 decrement 30
+ no shutdown
+!
+interface GigabitEthernet0/1
+ description WAN-to-ISP-G0/0
+ ip address 10.0.1.2 255.255.255.252
+ no shutdown
+!
+ip route 0.0.0.0 0.0.0.0 10.0.1.1
+!
+ip sla 10
+ icmp-echo 203.0.113.1 source-interface GigabitEthernet0/1
+ frequency 5
+ timeout 1000
+!
+ip sla schedule 10 life forever start-time now
+!
+track 10 ip sla 10 reachability
+!
+end

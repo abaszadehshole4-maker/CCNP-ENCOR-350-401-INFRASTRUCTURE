@@ -1,0 +1,31 @@
+!
+hostname SW1
+no ip domain-lookup
+!
+vlan 10
+ name USERS
+!
+interface GigabitEthernet0/1
+ description R1-G0/0
+ switchport mode access
+ switchport access vlan 10
+ spanning-tree portfast
+!
+interface GigabitEthernet0/2
+ description R2-G0/0
+ switchport mode access
+ switchport access vlan 10
+ spanning-tree portfast
+!
+interface GigabitEthernet0/3
+ description CLIENT
+ switchport mode access
+ switchport access vlan 10
+ spanning-tree portfast
+!
+interface Vlan10
+ description Optional-management-SVI
+ ip address 192.168.10.254 255.255.255.0
+ no shutdown
+!
+end
