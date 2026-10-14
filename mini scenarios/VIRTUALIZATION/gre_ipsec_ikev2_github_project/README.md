@@ -41,8 +41,7 @@ gre_ipsec_ikev2_github_project/
 Start the capture **before** bringing the tunnel up if you want to see the IKEv2 handshake. If the IKEv2 SA already exists, `udp.port == 500` may show no new negotiation. After the tunnel is established, generate LAN-to-LAN traffic and filter with `esp` to see protected traffic.
 
 ## Important notes
-
-- **No packet captures were attached to the chat when this archive was built.** The evidence directory contains templates only; it does not contain fabricated PCAP files. Copy your real EVE-NG captures into that folder.
+.
 - `203.0.113.0/24` is reserved for documentation and should be used only in an isolated lab; replace it if your topology requires different addressing.
 - The example PSK `LabOnly-ChangeThisKey-2026` is for a lab only. Change it on both routers and never commit production secrets.
 - IOS and IOS XE syntax/features differ by release and image. These configurations are examples and have not been tested against your particular EVE-NG image.
