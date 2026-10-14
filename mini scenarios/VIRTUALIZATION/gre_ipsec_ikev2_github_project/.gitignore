@@ -1,0 +1,8 @@
+# Keep large packet captures out of Git by default; remove # to enable ignoring all captures.
+# *.pcap
+# *.pcapng
+
+# OS/editor generated files
+.DS_Store
+Thumbs.db
+*.swp
