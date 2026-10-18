@@ -1,0 +1,7 @@
+# Packet captures may contain sensitive data; review before committing.
+# Uncomment to ignore captures by default:
+# *.pcap
+# *.pcapng
+.DS_Store
+Thumbs.db
+*.swp
