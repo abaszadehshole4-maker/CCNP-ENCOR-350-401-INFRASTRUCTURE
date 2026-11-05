@@ -1,0 +1,6 @@
+# Uncomment if you prefer not to commit packet captures by default:
+# *.pcap
+# *.pcapng
+.DS_Store
+Thumbs.db
+*.swp
