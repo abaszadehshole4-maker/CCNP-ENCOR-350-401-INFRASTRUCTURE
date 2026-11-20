@@ -1,0 +1,7 @@
+# VPCS node PC-USER
+ip 10.10.10.10/24 10.10.10.1
+save
+# Tests:
+show ip
+ping 10.10.10.1
+ping 203.0.113.1

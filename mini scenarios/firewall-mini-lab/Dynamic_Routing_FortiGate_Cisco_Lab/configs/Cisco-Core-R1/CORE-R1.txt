@@ -1,0 +1,47 @@
+! Cisco CORE-R1 - IOS / IOS XE style configuration
+! Gi0/0 -> FortiGate port3 (10.255.0.0/30)
+! Gi0/1 -> SW-LAN trunk; router-on-a-stick for VLANs 10 and 20
+!
+hostname CORE-R1
+no ip domain-lookup
+!
+interface GigabitEthernet0/0
+ description TRANSIT-TO-FORTIGATE-EDGE-port3
+ ip address 10.255.0.2 255.255.255.252
+ ip ospf network point-to-point
+ no shutdown
+!
+interface GigabitEthernet0/1
+ description DOT1Q-TRUNK-TO-SW-LAN-Gi0/1
+ no ip address
+ no shutdown
+!
+interface GigabitEthernet0/1.10
+ description VLAN10-USERS-GATEWAY
+ encapsulation dot1Q 10
+ ip address 10.10.10.1 255.255.255.0
+!
+interface GigabitEthernet0/1.20
+ description VLAN20-SERVERS-GATEWAY
+ encapsulation dot1Q 20
+ ip address 10.10.20.1 255.255.255.0
+!
+router ospf 10
+ router-id 10.255.0.2
+ passive-interface default
+ no passive-interface GigabitEthernet0/0
+ network 10.255.0.0 0.0.0.3 area 0
+ network 10.10.10.0 0.0.0.255 area 0
+ network 10.10.20.0 0.0.0.255 area 0
+!
+end
+write memory
+
+! Verification:
+! show ip interface brief
+! show ip ospf neighbor
+! show ip ospf interface brief
+! show ip route ospf
+! show ip route 0.0.0.0
+! show ip protocols
+! show running-config | section router ospf

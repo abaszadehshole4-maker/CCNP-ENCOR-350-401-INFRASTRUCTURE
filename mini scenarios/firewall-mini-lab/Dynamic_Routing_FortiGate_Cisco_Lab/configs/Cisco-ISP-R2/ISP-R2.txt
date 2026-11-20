@@ -1,0 +1,35 @@
+! Cisco ISP-R2 - IOS / IOS XE style configuration
+! Gi0/0 -> FortiGate port2 (198.51.100.0/30)
+! Loopback0 simulates an external test destination.
+!
+hostname ISP-R2
+no ip domain-lookup
+!
+interface GigabitEthernet0/0
+ description EBGP-TRANSIT-TO-FORTIGATE-EDGE-port2
+ ip address 198.51.100.1 255.255.255.252
+ no shutdown
+!
+interface Loopback0
+ description ISP-TEST-DESTINATION
+ ip address 203.0.113.1 255.255.255.255
+!
+router bgp 65000
+ bgp router-id 198.51.100.1
+ neighbor 198.51.100.2 remote-as 65010
+ neighbor 198.51.100.2 description FORTIGATE-EDGE-AS65010
+ neighbor 198.51.100.2 soft-reconfiguration inbound
+ neighbor 198.51.100.2 default-originate
+ network 203.0.113.1 mask 255.255.255.255
+!
+end
+write memory
+
+! Verification:
+! show ip interface brief
+! show ip bgp summary
+! show ip bgp
+! show ip route bgp
+! show ip bgp neighbors 198.51.100.2 advertised-routes
+! show ip route 10.10.10.0
+! show ip route 10.10.20.0

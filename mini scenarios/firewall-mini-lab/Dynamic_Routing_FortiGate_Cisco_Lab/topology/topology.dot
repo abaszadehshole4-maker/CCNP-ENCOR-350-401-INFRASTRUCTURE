@@ -1,0 +1,16 @@
+digraph DynamicRoutingLab {
+  graph [rankdir=TB, bgcolor="white", pad="0.28", nodesep="0.45", ranksep="0.62", fontname="Arial", labelloc="t", label="Dynamic Routing Lab: OSPF inside + eBGP at the WAN edge", fontsize=18];
+  node [shape=box, style="rounded,filled", fillcolor="#eef4fb", color="#3b5b7a", penwidth=1.4, fontname="Arial", fontsize=10, margin="0.16,0.10"];
+  edge [fontname="Arial", fontsize=9, color="#52677d", penwidth=1.4, arrowsize=0.8];
+  ISP [label="Cisco ISP-R2\nAS 65000\nGi0/0: 198.51.100.1/30\nLo0: 203.0.113.1/32", fillcolor="#fff1d6", color="#a77818"];
+  FGT [label="FortiGate EDGE\nFortiOS 7.6.7\nAS 65010 | BGP + OSPF\nport2: 198.51.100.2/30\nport3: 10.255.0.1/30", fillcolor="#e8f6ed", color="#267247"];
+  CORE [label="Cisco CORE-R1\nOSPF Process 10 / Area 0\nGi0/0: 10.255.0.2/30\nGi0/1.10: 10.10.10.1/24\nGi0/1.20: 10.10.20.1/24", fillcolor="#eef4fb"];
+  SW [label="Cisco SW-LAN\nVLAN 10 USERS | VLAN 20 SERVERS\nGi0/1 trunk to CORE-R1", fillcolor="#f0edfb", color="#65539b"];
+  PC1 [label="PC-USER (VPCS)\n10.10.10.10/24\nGW 10.10.10.1", fillcolor="#f7f7f7", color="#777777"];
+  PC2 [label="PC-SERVER (VPCS)\n10.10.20.10/24\nGW 10.10.20.1", fillcolor="#f7f7f7", color="#777777"];
+  ISP -> FGT [dir=both, label="eBGP\nAS65000 <-> AS65010\n198.51.100.0/30"];
+  FGT -> CORE [dir=both, label="OSPF Area 0\n10.255.0.0/30"];
+  CORE -> SW [dir=both, label="802.1Q trunk\nVLANs 10,20"];
+  SW -> PC1 [dir=both, label="Access VLAN 10"];
+  SW -> PC2 [dir=both, label="Access VLAN 20"];
+}
