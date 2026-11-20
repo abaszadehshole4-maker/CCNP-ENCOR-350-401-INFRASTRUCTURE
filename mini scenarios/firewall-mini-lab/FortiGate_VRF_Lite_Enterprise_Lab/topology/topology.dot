@@ -1,0 +1,27 @@
+digraph VRF_LAB {
+  graph [rankdir=LR, bgcolor="white", pad="0.25", nodesep="0.45", ranksep="0.75", splines=ortho, fontname="Arial", label="FORTIGATE VRF-LITE LAB | Two isolated routing domains", labelloc=t, fontsize=20];
+  node [shape=box, style="rounded,filled", fontname="Arial", fontsize=10, color="#334155", penwidth=1.3, margin="0.14,0.10"];
+  edge [fontname="Arial", fontsize=9, color="#475569", penwidth=1.5, arrowsize=0.8];
+
+  subgraph cluster_clients {
+    label="ENDPOINTS"; color="#CBD5E1"; style="rounded,dashed";
+    PC_A [label="PC-USERS\nVPCS\n10.10.10.10/24\nGW 10.10.10.1", fillcolor="#DBEAFE"];
+    PC_B [label="PC-APPS\nVPCS\n10.20.20.10/24\nGW 10.20.20.1", fillcolor="#DCFCE7"];
+  }
+  SW [label="SW-ACCESS\nCisco IOSvL2\nGi0/0 trunk VLAN 10,20\nGi0/1 access VLAN 10\nGi0/2 access VLAN 20", fillcolor="#F1F5F9"];
+  subgraph cluster_fw {
+    label="FORTIGATE 7.6.7 | ROUTING SEPARATION"; color="#0F766E"; penwidth=2; style="rounded";
+    FGT [label="FGT-VRF-LAB\nVLAN10-USERS -> VRF 10\nport2 WAN-USERS -> VRF 10\n\nVLAN20-APPS -> VRF 20\nport4 WAN-APPS -> VRF 20\n\nSeparate RIBs + firewall policies + SNAT", fillcolor="#CCFBF1", color="#0F766E", penwidth=2];
+  }
+  ISP [label="R-ISP\nCisco IOSv\nGi0/0 203.0.113.1/30\nGi0/1 198.51.100.1/30\nLo0 8.8.8.8/32\nLo1 1.1.1.1/32", fillcolor="#FDE68A"];
+  LOOP_A [label="TEST TARGET A\n8.8.8.8/32\nUsers VRF test", fillcolor="#DBEAFE"];
+  LOOP_B [label="TEST TARGET B\n1.1.1.1/32\nApps VRF test", fillcolor="#DCFCE7"];
+
+  PC_A -> SW [label="Gi0/1 access VLAN 10"];
+  PC_B -> SW [label="Gi0/2 access VLAN 20"];
+  SW -> FGT [label="Gi0/0 trunk\nFGT port3\n802.1Q 10,20"];
+  FGT -> ISP [label="port2 <-> Gi0/0\n203.0.113.0/30\nVRF 10", color="#2563EB"];
+  FGT -> ISP [label="port4 <-> Gi0/1\n198.51.100.0/30\nVRF 20", color="#16A34A"];
+  ISP -> LOOP_A [label="Loopback0", color="#2563EB"];
+  ISP -> LOOP_B [label="Loopback1", color="#16A34A"];
+}

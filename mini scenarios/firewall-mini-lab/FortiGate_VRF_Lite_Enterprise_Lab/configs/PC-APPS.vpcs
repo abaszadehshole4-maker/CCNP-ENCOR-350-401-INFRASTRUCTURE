@@ -1,0 +1,7 @@
+# EVE-NG VPCS commands
+ip 10.20.20.10/24 10.20.20.1
+save
+# Tests:
+# ping 10.20.20.1
+# ping 1.1.1.1
+# ping 10.10.10.10   (expected to fail: VRF isolation)
