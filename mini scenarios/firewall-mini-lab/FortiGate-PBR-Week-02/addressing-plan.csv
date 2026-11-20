@@ -1,0 +1,14 @@
+Node,Interface,Address,Mask,Description
+FGT-HQ,port1,10.10.10.1,255.255.255.0,LAN gateway
+FGT-HQ,port2,203.0.113.2,255.255.255.252,WAN1 to ISP-A
+FGT-HQ,port3,198.51.100.2,255.255.255.252,WAN2 to ISP-B
+R1-ISP-A,GigabitEthernet0/0,203.0.113.1,255.255.255.252,FGT WAN1 next hop
+R1-ISP-A,GigabitEthernet0/1,10.0.1.1,255.255.255.252,Core transit A
+R2-ISP-B,GigabitEthernet0/0,198.51.100.1,255.255.255.252,FGT WAN2 next hop
+R2-ISP-B,GigabitEthernet0/1,10.0.2.1,255.255.255.252,Core transit B
+R3-CORE,GigabitEthernet0/0,10.0.1.2,255.255.255.252,Transit A
+R3-CORE,GigabitEthernet0/1,10.0.2.2,255.255.255.252,Transit B
+R3-CORE,Loopback0,192.0.2.10,255.255.255.255,Server A - PBR destination
+R3-CORE,Loopback1,192.0.2.20,255.255.255.255,Server B - nonmatching destination
+PC-PBR,NIC,10.10.10.10,255.255.255.0,Selected source for WAN2
+PC-DEFAULT,NIC,10.10.10.20,255.255.255.0,Uses default route WAN1

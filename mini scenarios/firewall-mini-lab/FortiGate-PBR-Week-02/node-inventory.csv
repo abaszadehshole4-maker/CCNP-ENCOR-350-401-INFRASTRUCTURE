@@ -1,0 +1,8 @@
+Node,Image,Role,Interfaces
+FGT-HQ,FortiGate VM64 KVM FortiOS 7.6.x,Firewall/PBR,port1 LAN; port2 WAN1; port3 WAN2
+R1-ISP-A,Cisco IOSv,ISP-A router,Gi0/0 FGT; Gi0/1 Core
+R2-ISP-B,Cisco IOSv,ISP-B router,Gi0/0 FGT; Gi0/1 Core
+R3-CORE,Cisco IOSv,Remote core/test endpoints,Gi0/0 ISP-A; Gi0/1 ISP-B; Lo0; Lo1
+SW-LAN,Cisco IOSvL2,Access switch,Gi0/1 FGT; Gi0/2 PC-PBR; Gi0/3 PC-DEFAULT
+PC-PBR,VPCS,Selected source,eth0
+PC-DEFAULT,VPCS,Normal-routing source,eth0
