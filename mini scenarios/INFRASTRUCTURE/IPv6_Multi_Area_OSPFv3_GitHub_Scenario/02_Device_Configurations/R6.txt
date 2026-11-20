@@ -1,0 +1,14 @@
+hostname R6
+!
+ipv6 unicast-routing
+!
+ipv6 router ospf 10
+ router-id 6.6.6.6
+!
+interface Ethernet0/0
+ description TO-R3-AREA1
+ ipv6 address 2001:DB8:3:40::6/64
+ ipv6 ospf 10 area 1
+ no shutdown
+!
+end

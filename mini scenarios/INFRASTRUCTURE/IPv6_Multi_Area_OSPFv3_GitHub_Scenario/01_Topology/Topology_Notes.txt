@@ -1,0 +1,1 @@
+Original topology image supplied by the user. Router interface labels and IPv6 addressing assumptions are documented in the lab guide and addressing plan.
